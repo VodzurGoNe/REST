@@ -9,10 +9,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
-    @Autowired
     SessionFactory factory;
+
+    @Autowired
+    public void setFactory(SessionFactory sessionFactory) {
+        this.factory = sessionFactory;
+    }
 
     @Override
     public List<Employee> getAllEmployees() {

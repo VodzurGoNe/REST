@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    @Autowired
     private EmployeeDAO employeeDAO;
+
+    @Autowired
+    public void setEmployeeDAO(EmployeeDAO employeeDAO) {
+        this.employeeDAO = employeeDAO;
+    }
 
     @Override
     @Transactional

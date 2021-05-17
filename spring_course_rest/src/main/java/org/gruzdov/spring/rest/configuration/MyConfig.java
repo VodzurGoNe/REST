@@ -15,20 +15,26 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("org.gruzdov.spring.rest")
+@ComponentScan(basePackages = "org.gruzdov.spring.rest")
 @EnableWebMvc
 @EnableTransactionManagement
 public class MyConfig {
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource(){
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
+//        BasicDataSource dataSource = new BasicDataSource();
         try {
             dataSource.setDriverClass("org.postgresql.Driver");
             dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/java_ee_db?useSSL=false");
             dataSource.setUser("postgres");
             dataSource.setPassword("DualSword163!@");
-
+        /*
+            dataSource.setDriverClassName("org.postgresql.Driver");
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/java_ee_db?useSSL=false");
+            dataSource.setUsername("postgres");
+            dataSource.setPassword("DualSword163!@");
+        */
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
@@ -43,7 +49,7 @@ public class MyConfig {
     }*/
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
+    public LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("com.gruzdov.spring.rest.entity");
@@ -64,7 +70,7 @@ public class MyConfig {
     }
 
     @Bean
-    public HibernateTransactionManager transactionManager() {
+    public HibernateTransactionManager transactionManager(){
         HibernateTransactionManager transactionManager =
                 new HibernateTransactionManager();
 
