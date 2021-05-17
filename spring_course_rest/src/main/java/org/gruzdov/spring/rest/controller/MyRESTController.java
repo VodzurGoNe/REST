@@ -1,11 +1,13 @@
 package org.gruzdov.spring.rest.controller;
 
 import org.gruzdov.spring.rest.entity.Employee;
+import org.gruzdov.spring.rest.exception_handling.EmployeeIncorrectData;
+import org.gruzdov.spring.rest.exception_handling.NoSuchEmployeeException;
 import org.gruzdov.spring.rest.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +22,25 @@ public class MyRESTController {
         List<Employee> allEmployee = employeeService.getAllEmployees();
 
         return allEmployee;
+    }
+
+    @GetMapping("/employees/{id}")
+    public Employee getEmployee(@PathVariable Long id) {
+        Employee employee = employeeService.getEmployee(id);
+
+        if (employee == null)
+            throw new NoSuchEmployeeException("There is no employee with ID = " +
+                    id + " int Database");
+
+        return employee;
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<EmployeeIncorrectData> handleException(
+            NoSuchEmployeeException exception) {
+        EmployeeIncorrectData data = new EmployeeIncorrectData();
+        data.setInfo(exception.getMessage());
+
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
     }
 }

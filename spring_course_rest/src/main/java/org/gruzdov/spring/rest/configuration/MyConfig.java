@@ -15,7 +15,7 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = "org.gruzdov.spring.rest")
+@ComponentScan("org.gruzdov.spring.rest")
 @EnableWebMvc
 @EnableTransactionManagement
 public class MyConfig {
@@ -34,6 +34,13 @@ public class MyConfig {
         }
         return dataSource;
     }
+    /* private Properties hibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
+        properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        return properties;
+    }*/
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -43,10 +50,14 @@ public class MyConfig {
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect"
-                , "org.hibernate.dialect.PostgreSQL94Dialect");
+                , "org.hibernate.dialect.PostgreSQL92Dialect");
         hibernateProperties.setProperty("hibernate.show_sql"
                 , "true");
-
+    /*    hibernateProperties.setProperty("hibernate.c3p0.min_size"
+                , "5");
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto"
+                , "update");
+    */
         sessionFactory.setHibernateProperties(hibernateProperties);
 
         return sessionFactory;
