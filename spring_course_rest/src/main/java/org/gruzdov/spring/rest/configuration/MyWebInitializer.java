@@ -2,6 +2,7 @@ package org.gruzdov.spring.rest.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+
 public class MyWebInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
@@ -11,11 +12,12 @@ public class MyWebInitializer extends
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {HibernateConfig.class};
+        return new Class[] {MyConfig.class};
     }
 
     @Override
     protected String[] getServletMappings() {
         return new String[] {"/"};
     }
+
 }
