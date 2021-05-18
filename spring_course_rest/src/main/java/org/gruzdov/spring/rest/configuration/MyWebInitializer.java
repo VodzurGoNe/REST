@@ -11,7 +11,7 @@ public class MyWebInitializer extends
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {MyConfig.class};
+        return new Class[] {HibernateConfig.class};
     }
 
     @Override

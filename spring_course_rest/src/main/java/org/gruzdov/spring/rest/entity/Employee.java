@@ -1,16 +1,13 @@
 package org.gruzdov.spring.rest.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -30,4 +27,13 @@ public class Employee {
 
     @Column(name = "salary")
     private Integer salary;
+
+    public Employee(String name, String surname, String department, Integer salary) {
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
+    }
 }
+
+
