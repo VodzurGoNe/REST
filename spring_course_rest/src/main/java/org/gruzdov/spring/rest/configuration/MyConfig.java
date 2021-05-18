@@ -17,8 +17,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableTransactionManagement
 public class MyConfig {
-    public MyConfig() {
-    }
 
     @Bean
     public DataSource dataSource() {
