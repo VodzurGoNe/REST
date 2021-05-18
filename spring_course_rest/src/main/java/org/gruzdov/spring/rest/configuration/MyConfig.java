@@ -28,6 +28,7 @@ public class MyConfig {
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
     @Bean
     public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
