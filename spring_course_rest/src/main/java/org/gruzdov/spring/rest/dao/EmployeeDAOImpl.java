@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
-    SessionFactory factory;
+    private SessionFactory factory;
 
     @Autowired
     public void Factory(SessionFactory sessionFactory) {
