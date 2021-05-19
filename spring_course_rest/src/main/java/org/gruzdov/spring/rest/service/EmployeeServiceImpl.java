@@ -13,7 +13,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeDAO employeeDAO;
 
     @Autowired
-    public void setEmployeeDAO(EmployeeDAO employeeDAO) {
+    public void EmployeeDAO(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
     }
 
