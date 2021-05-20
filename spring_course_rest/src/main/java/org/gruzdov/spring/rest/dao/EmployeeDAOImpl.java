@@ -15,7 +15,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private SessionFactory factory;
 
     @Autowired
-    public void Factory(SessionFactory sessionFactory) {
+    public EmployeeDAOImpl(SessionFactory sessionFactory) {
         this.factory = sessionFactory;
     }
 

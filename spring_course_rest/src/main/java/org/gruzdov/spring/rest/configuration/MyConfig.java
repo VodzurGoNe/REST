@@ -22,10 +22,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableTransactionManagement
 @PropertySource(value = "classpath:db.property")
 public class MyConfig {
-    private Environment environment;
+    private final Environment environment;
 
     @Autowired
-    public void Environment(Environment environment) {
+    public MyConfig(Environment environment) {
         this.environment = environment;
     }
 

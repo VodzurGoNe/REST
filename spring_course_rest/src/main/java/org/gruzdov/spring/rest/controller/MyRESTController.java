@@ -15,7 +15,7 @@ public class MyRESTController {
     private EmployeeService employeeService;
 
     @Autowired
-    public void EmployeeService(EmployeeService employeeService) {
+    public MyRESTController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
